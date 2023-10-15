@@ -2,14 +2,14 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 console.log(galleryItems);
 
-const listImages = document.querySelector(".gallery");
-console.log(listImages);
+const listImg = document.querySelector(".gallery");
+console.log(listImg);
 
-const imagesMarkup = createImagesListMarkup(galleryItems);
-listImages.insertAdjacentHTML("beforeend", imagesMarkup);
-listImages.addEventListener("click", onCardsContainerClick);
+listImg.addEventListener("click", openModalImg);
+const imgMarkup = createImgList(galleryItems);
+listImg.insertAdjacentHTML("beforeend", imgMarkup);
 
-function createImagesListMarkup(images) {
+function createImgList(images) {
   return images
     .map(({ original, preview, description }) => {
       return `<li class="gallery__item">
@@ -26,9 +26,9 @@ function createImagesListMarkup(images) {
     .join("");
 }
 
-listImages.addEventListener("click", onCardsContainerClick);
+listImg.addEventListener("click", openModalImg);
 
-function onCardsContainerClick(event) {
+function openModalImg(event) {
   event.preventDefault();
   const target = event.target;
 
@@ -40,47 +40,8 @@ function onCardsContainerClick(event) {
   const description = target.alt;
 
   const instance = basicLightbox.create(
-    `<img src="${originalImageURL}" alt="${description}" />`
+    `<img src="${originalImageURL}" alt="${description}" width="800" height="600" />`
   );
 
   instance.show();
 }
-
-// const galleryList = document.querySelector(".gallery");
-
-// function createGalleryItem(item) {
-//   const galleryItem = document.createElement("li");
-//   galleryItem.classList.add("gallery__item");
-
-//   const galleryLink = document.createElement("a");
-//   galleryLink.classList.add("gallery__link");
-//   galleryLink.href = item.original;
-
-//   const galleryImage = document.createElement("img");
-//   galleryImage.classList.add("gallery__image");
-//   galleryImage.src = item.preview;
-//   galleryImage.setAttribute("data-source", item.original);
-//   galleryImage.alt = item.description;
-
-//   galleryLink.appendChild(galleryImage);
-//   galleryItem.appendChild(galleryLink);
-
-//   return galleryItem;
-// }
-
-// const galleryItemsElements = galleryItems.map(createGalleryItem);
-// galleryList.append(...galleryItemsElements);
-
-// galleryList.addEventListener("click", (event) => {
-//   event.preventDefault();
-//   if (event.target.nodeName === "IMG") {
-//     const source = event.target.dataset.source;
-//     const alt = event.target.alt;
-
-//     const instance = basicLightbox.create(
-//       `<img src="${source}" alt="${alt}" />`
-//     );
-
-//     instance.show();
-//   }
-// });
