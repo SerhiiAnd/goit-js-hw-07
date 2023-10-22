@@ -21,7 +21,7 @@ function createImgList(images) {
       </li>`;
     })
     .join("");
-  listImg.innerHTML = imgMarkup;
+  // listImg.innerHTML = imgMarkup;
 }
 
 // listImg.addEventListener("click", openModalImg);
